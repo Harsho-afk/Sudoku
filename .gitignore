@@ -1,0 +1,6 @@
+lib/
+bin/
+.vscode/
+__pycache__/
+temp/
+DigitRecognitionModel.keras
