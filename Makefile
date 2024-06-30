@@ -1,2 +1,2 @@
 sudoku: sudoku.c
-	gcc sudoku.c -o sudoku -Wall -Wextra -pedantic -std=c23
+	gcc sudoku.c -o sudoku.out -Wall -Wextra -pedantic -ggdb3 -std=c23
