@@ -32,70 +32,6 @@ void printTable(TABLE table) {
     printf("\n");
 }
 
-int getBoxNumber(int row, int col) {
-    if (row < 3) {
-        if (col < 3) {
-            return 1;
-        }
-        if (col < 6) {
-            return 2;
-        }
-        return 3;
-    }
-    if (row < 6) {
-        if (col < 3) {
-            return 4;
-        }
-        if (col < 6) {
-            return 5;
-        }
-        return 6;
-    }
-    if (col < 3) {
-        return 7;
-    }
-    if (col < 6) {
-        return 8;
-    }
-    return 9;
-}
-
-int checkBox(TABLE table, int boxNum, int num) {
-    int row, col;
-    if (boxNum <= 3) {
-        row = 0;
-    } else if (boxNum <= 6) {
-        row = 3;
-    } else {
-        row = 6;
-    }
-    switch (boxNum) {
-    case 1:
-    case 4:
-    case 7:
-        col = 0;
-        break;
-    case 2:
-    case 5:
-    case 8:
-        col = 3;
-        break;
-    case 3:
-    case 6:
-    case 9:
-        col = 6;
-        break;
-    }
-    for (int i = row; i < row + 3; i++) {
-        for (int j = col; j < col + 3; j++) {
-            if (table.arr[i][j] == num) {
-                return 0;
-            }
-        }
-    }
-    return 1;
-}
-
 int checkIfTableIsSolved(TABLE table) {
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 9; col++) {
@@ -108,21 +44,26 @@ int checkIfTableIsSolved(TABLE table) {
 }
 
 int checkIfValidMove(TABLE table, int row, int col, int num) {
-    // check row
+    // check row and col
     for (int i = 0; i < 9; i++) {
         if (table.arr[row][i] == num) {
             return 0;
         }
-    }
-    // check col
-    for (int i = 0; i < 9; i++) {
         if (table.arr[i][col] == num) {
             return 0;
         }
     }
     // check box
-    int boxNum = getBoxNumber(row, col);
-    return checkBox(table, boxNum, num);
+    row = row - row % 3;
+    col = col - col % 3;
+    for (int i = row; i < row + 3; i++) {
+        for (int j = col; j < col + 3; j++) {
+            if (table.arr[i][j] == num) {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 
 int backTracking(TABLE *table) {
@@ -214,7 +155,8 @@ void getRandomValidTable(TABLE *table) {
             }
             table->arr[row][col] = num;
             copyTable(gen, table->arr);
-            //printf("%d %d %d %d %d\n", sizeOfAvailableIndex,sizeOfAvailableNumbers, row, col, num);
+            // printf("%d %d %d %d %d\n",
+            // sizeOfAvailableIndex,sizeOfAvailableNumbers, row, col, num);
             if (backTracking(gen)) {
                 // add the number to available numbers array
                 int *tmp = realloc(availableNumbers,
