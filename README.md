@@ -4,8 +4,8 @@ A simple Sudoku board generator and solver written in C that uses a backtracking
 
 ## Requirements
 
-- **C Compiler:** GCC or any compatible C compiler.
-- **Make:** (Optional) To build using the provided Makefile.
+- **C Compiler**
+- **Make** (Optional)
 
 ## Installation
 
@@ -13,26 +13,11 @@ Clone the repository and navigate into the project directory:
 ```
 git clone https://github.com/Harsho-afk/Sudoku.git
 cd Sudoku
-```
-
-## Using the Makefile
-
-Build the project by running:
-```
 make
-```
-This will compile the source code and produce an executable.
-
-## Manual Compilation
-
-Alternatively, compile manually using GCC:
-```
-gcc sudoku.c -o sudoku
 ```
 
 ## Usage
 
-After compiling, run the executable from your terminal:
 ```
 ./sudoku
 ```
