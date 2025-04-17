@@ -19,6 +19,6 @@ make
 ## Usage
 
 ```
-./sudoku
+./sudoku.out
 ```
 The program will generate a random, valid Sudoku board and print it to the console.
